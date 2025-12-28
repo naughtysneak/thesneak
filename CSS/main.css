@@ -1,0 +1,163 @@
+* {
+	font-family	: "Rajdhani";
+	color		: white;
+}
+
+@property --offset {
+	syntax			: "<length>";
+	initial-value	: 1px;
+	inherits		: false;
+}
+
+:root {
+	--buttonColor	: white;
+
+	--gradKeyA		: #060631;
+	--gradKeyB		: #130330;
+
+	--radius		: 6px;
+}
+
+html {
+	background			: linear-gradient(to bottom, var(--gradKeyA), var(--gradKeyB));
+	background-repeat	: repeat-x;
+	background-size		: cover;
+
+	scroll-behavior		: smooth;
+}
+body {
+	position	: relative;
+	overflow	: hidden;
+
+	min-height	: 100vh;
+}
+h1, h2, h3 {
+	font-family: "Rajdhani_Bold";
+}
+h4, h5, h6, button {
+	font-family: "Rajdhani_SemiBold";
+}
+p, a {
+	font-family: "Rajdhani_Medium";
+}
+
+#warning {
+	display			: grid;
+	justify-content	: center;
+	align-items		: center;
+
+	background-color: #000011d3;
+	backdrop-filter	: blur(40px);
+	
+	position		: fixed;
+	z-index			: 1;
+	inset			: 0px;
+}
+#warning_content {
+	background-color: #010127;
+	--gradKeyA		: #1c1c8d;
+	--gradKeyB		: #1b0345;
+
+	border-radius	: calc(var(--radius) - var(--offset));
+	width			: clamp(320px, 50vw, 640px);
+}
+#warning_content h1 {
+	background-color: #5c00004d;
+	border-radius	: inherit;
+	
+	margin			: 0px;
+	padding			: 8px 4px;
+
+	text-align		: center;
+	text-transform	: uppercase;
+}
+
+.flex_center {
+	display			: flex;
+	justify-content	: center;
+	align-items		: center;
+}
+
+.link_group_row {
+	display			: flex;
+	justify-content	: space-between;
+
+	gap				: 8px;
+	padding			: 8px;
+}
+
+#filters {
+	display					: grid;
+	grid-template-columns	: 1fr;
+	gap						: 8px;
+
+	justify-content			: center;
+	align-items				: center;
+}
+
+#search {
+	position: relative;
+	background-color: #221558;
+	border: none;
+
+	border-radius: var(--radius);
+	padding: 8px;
+}
+#search::after {
+	position: absolute;
+	content: "";
+
+	background-image: url("../Media/Checker.webp");
+	background-size: contain;
+	inset: 0px;
+	z-index: 1;
+
+	width: 64px;
+	height: 64px;
+}
+input:focus {
+	accent-color: transparent;
+}
+input::placeholder {
+	color: white;
+}
+
+button {
+	background-color: transparent;
+	--gradKeyA		: hsl(from var(--buttonColor) h s 61%);
+	--gradKeyB		: hsl(from var(--buttonColor) h s 7%);
+	color			: var(--buttonColor);
+	
+	outline			: none;
+	border			: none;
+	border-radius	: calc(var(--radius) - var(--offset));
+	
+	width			: 100%;
+	padding			: 8px;
+
+	scale			: 0.95;
+	transition		: color linear 0.1s, background-color linear 0.1s, scale ease 0.2s;
+}
+button:hover {
+	background-color: var(--buttonColor);
+	color			: white;
+
+	scale			: 1.0;
+}
+
+@font-face {
+	font-family: "Rajdhani";
+	src: url('../Fonts/Rajdhani/Rajdhani-Regular.ttf');
+}
+@font-face {
+	font-family: "Rajdhani_Medium";
+	src: url('../Fonts/Rajdhani/Rajdhani-Medium.ttf');
+}
+@font-face {
+	font-family: "Rajdhani_SemiBold";
+	src: url('../Fonts/Rajdhani/Rajdhani-SemiBold.ttf');
+}
+@font-face {
+	font-family: "Rajdhani_Bold";
+	src: url('../Fonts/Rajdhani/Rajdhani-Bold.ttf');
+}
