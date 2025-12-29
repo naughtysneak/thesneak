@@ -148,6 +148,10 @@
 #changelog nobr {
 	font-size: 1rem;
 }
+#changelog ul {
+	list-style-type	: '- ';
+	padding-left	: 16px;
+}
 
 #open_changelog {
 	--buttonColor: #20619e;

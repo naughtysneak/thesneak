@@ -61,6 +61,7 @@ button {
 	--gradKeyB		: hsl(from var(--buttonColor) h s 7%);
 	color			: var(--buttonColor);
 	
+	cursor			: pointer;
 	outline			: none;
 	border			: none;
 	border-radius	: calc(var(--radius) - var(--offset));
