@@ -1,8 +1,13 @@
+/**
+ * COPYRIGHT (c) 2025 - 2026 NaughtySneak. All rights reserved.
+ */
+
 let artEntries = document.getElementsByClassName("entry");
+let artPieceBttn = document.getElementsByClassName("piece");
 let i = artEntries.length - 1;
 
-let popIn =
-[
+//#region OBSERVER
+let popIn = [
 	{
 		opacity: 0,
 		scale: 0.8,
@@ -12,8 +17,7 @@ let popIn =
 		scale: 1,
 	}
 ];
-let popOut =
-[
+let popOut = [
 	{
 		opacity: 1,
 		scale: 1,
@@ -48,30 +52,14 @@ let observer = new IntersectionObserver((entries) =>
 				}
 			);
 	});
-},
-{
-	threshold: 0.35
 });
 for (let i = 0; i < artEntries.length; i++) {
 	const element = artEntries[i];
 	observer.observe(element);
 }
+//#endregion
 
-let warning = document.getElementById("warning");
-let enterBttn = document.getElementById("enter");
-let exitBttn = document.getElementById("exit");
-
-enterBttn.onclick = () =>
-{
-	warning.style.setProperty("display", "none");
-	document.body.style.setProperty("overflow", "visible");
-};
-
-exitBttn.onclick = () =>
-{
-	window.open("https://www.google.com/");
-};
-
+//#region VISUAL LINKING
 let childCount = 1;
 let addedPieces = 0;
 let a = 0;
@@ -91,9 +79,12 @@ for (let m = 0; m < metadata.length; m++) {
 	
 	while(addedPieces < element[1].setCount)
 	{
-		element[1].pieces.push(element[1].linkedElement.children[1].children[a]);
-		++a;
+		let child = element[1].linkedElement.children[1].children[a];
+		child.addEventListener("click", SetPreview(child, element[1]));
 
+		element[1].pieces.push(child);
+
+		++a;
 		++addedPieces;
 	}
 	
@@ -106,3 +97,57 @@ for (let m = 0; m < metadata.length; m++) {
 		resetChildCount = true;
 	}
 }
+//#endregion
+
+let warning = document.getElementById("warning");
+let enterBttn = document.getElementById("enter");
+let exitBttn = document.getElementById("exit");
+let closeBttn = document.getElementById("close");
+
+let previewOverlay = document.getElementById("preview_overlay");
+let previewGraphic = document.getElementById("preview_graphic");
+let previewContent = document.getElementById("preview_content");
+
+let pieceTitle = document.getElementById("piece_title");
+let pieceTime = document.getElementById("piece_time");
+let pieceDescription = document.getElementById("piece_description");
+
+function SetPreview(element, data)
+{
+	const style = getComputedStyle(element);
+	
+	element.addEventListener("click", () =>
+	{
+		if(style.opacity != "1")
+			return;
+		
+		previewOverlay.style.setProperty("display", "grid");
+		previewOverlay.animate(popIn);
+		
+		previewContent.style.setProperty("--gradKeyA", style.getPropertyValue("--gradKeyA"));
+		previewContent.style.setProperty("--gradKeyB", style.getPropertyValue("--gradKeyB"));
+		
+		previewGraphic.src = element.style.getPropertyValue("--piece").replace("url(", "").replace(")", "");
+		pieceDescription.style.setProperty("--headerColor", style.getPropertyPriority("--headerColor"));
+
+		pieceTitle.innerText = data.name;
+		pieceTime.innerText = `Time Taken - ${data.hoursInt}`;
+		pieceDescription.innerHTML = data.description;
+	});
+}
+
+closeBttn.onclick = () =>
+{
+	previewOverlay.style.setProperty("display", "none");
+};
+
+enterBttn.onclick = () =>
+{
+	warning.style.setProperty("display", "none");
+	document.body.style.setProperty("overflow", "visible");
+};
+
+exitBttn.onclick = () =>
+{
+	window.open("https://www.google.com/");
+};

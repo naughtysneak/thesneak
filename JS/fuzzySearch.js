@@ -1,3 +1,7 @@
+/**
+ * COPYRIGHT (c) 2025 - 2026 NaughtySneak. All rights reserved.
+ */
+
 class Match
 {
 	candidate;
@@ -19,14 +23,28 @@ function RunSearch()
 	for (let i = 0; i < artEntries.length; i++) {
 		const element = artEntries[i];
 		
-		let disable = searchBar.value != "" && result != null && element != entries[result.candidate].linkedElement;
-		element.style.setProperty("display", disable ? "none" : "block");
-
-		if(element.style.getPropertyValue("display") == "block")
+		let enable = searchBar.value == "" || searchBar.value != "" && element == entries[result.candidate].linkedElement;
+		element.style.setProperty("display", enable ? "block" : "none");
+		
+		if(searchBar.value != "" && element.style.getPropertyValue("display") == "block")
 			searchMatch = entries[result.candidate];
 	}
 	
-	let children = Array.from(searchMatch.linkedElement.children[1].children);
+	let children;
+	
+	if(searchMatch != null)
+		children = Array.from(searchMatch.linkedElement.children[1].children);
+
+	if(searchBar.value == "")
+	{
+		for (let i = 0; i < children.length; i++) {
+			const element = children[i];
+			element.style.setProperty("opacity", "1");
+		}
+
+		return;
+	}
+	
 	let pieces = Array.from(searchMatch.pieces);
 
 	for (let i = 0; i < children.length; i++) {

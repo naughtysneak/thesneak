@@ -1,3 +1,7 @@
+/**
+ * COPYRIGHT (c) 2025 - 2026 NaughtySneak. All rights reserved.
+ */
+
 const CharacterTags = {
 	DARGOO: 1,
 	ORION: 2,
@@ -12,6 +16,8 @@ const CharacterTags = {
 	LAPLACE: 1024,
 	ANTHONY: 2048,
 	TRICK: 4096,
+	MCCHOMP: 8192,
+	ATLAS: 16843,
 };
 const TypeTags = {
 	STICKER: 1,
@@ -33,7 +39,7 @@ class ArtEntry
 	description;
 	
 	date;
-	hoursTake;
+	hoursInt;
 	
 	characterTags;
 	typeTags;
@@ -65,7 +71,7 @@ class ArtEntry
 		this.description = description
 		
 		this.date = date;
-		this.hoursTake = hours;
+		this.hoursInt = hours;
 		
 		this.characterTags = chars;
 		this.typeTags = type;
@@ -174,4 +180,49 @@ let entries = {
 											<br><br>Noa (21) belongs to NoasManCave.
 											`,
 											20253, 15, CharacterTags.NOA | CharacterTags.ORION, TypeTags.COMIC, CensorType.NSFW, 2),
+	"Atlas West" 			: new ArtEntry	(null, "Atlas West Ref WIP",
+											`I never really showed off Atlas as much as I would've liked. However, this adorable
+											bombay cat deserves a retouch!
+											<br><br>Definitely made him bigger... in more ways than one. Hehehe~
+											<br><br>Welp, time to put a sock on the door :).
+											`,
+											20253, 5, CharacterTags.ATLAS, TypeTags.SHEET, CensorType.NSFW, 1),
+	"Overtime Tips" 		: new ArtEntry	(null, "Overtime Tips WIP",
+											`After a long day of serving and busting, why not leave the chain chomp a nice... "tip~
+											<br><br>Needless to say, McChomp never goes home empty~ Hehehe.
+											`,
+											20254, 4, CharacterTags.MCCHOMP, TypeTags.COMIC, CensorType.NSFW, 2),
+	"Orion v2025 SFW" 		: new ArtEntry	(null, "Orion Ref v2025 - SFW",
+											`Name: Orion Vance
+											<br>- Birth Name: Orion Axelia Pelago
+											<br><br>Age: 23 (Born 7/4/2001)
+											<br>Height: 6'7
+											<br>Species: Orca
+											<br><br>Appearance: After obtaining new magic and overcoming his inner demons, his magic evolved
+											and rewarded him with new body art, and physical strength to reflect his inner one.
+											`,
+											20254, 19, CharacterTags.ORION, TypeTags.SHEET, CensorType.SFW, 2),
+	"Orion v2025 NSFW" 		: new ArtEntry	(null, "Orion Ref v2025 - NSFW",
+											`Name: Orion Vance
+											<br>- Birth Name: Orion Axelia Pelago
+											<br><br>Age: 23 (Born 7/4/2001)
+											<br>Height: 6'7
+											<br>Species: Orca
+											<br><br>Appearance: After obtaining new magic and overcoming his inner demons, his magic evolved
+											and rewarded him with new body art, and physical strength to reflect his inner one.
+											<br><h2 style='margin: 0px; margin-top: 16px;'>NSFW Details</h2>
+											<br>- Alignment: Dominant
+											<br>- Position: Top
+											<br>- Sexuality: Gay
+											<br><br><h3 style='margin: 0px;'>Dick Sizes</h3>
+											<br>Flaccid
+											<br>- 7.044 inches,
+											<br>- 9.2677 in circumference,
+											<br>- 2.96 diameter stretch
+											<br><br>Erect
+											<br>- 11.16 - 12.6 inches,
+											<br>- 13.034 in circumference,
+											<br>- 4.14886 diameter stretch
+											`,
+											20254, 19, CharacterTags.ORION, TypeTags.SHEET, CensorType.NSFW, 2),
 }
