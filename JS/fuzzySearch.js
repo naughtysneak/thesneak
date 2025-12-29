@@ -24,9 +24,9 @@ function RunSearch()
 		const element = artEntries[i];
 		
 		let enable = searchBar.value == "" || searchBar.value != "" && element == entries[result.candidate].linkedElement;
-		element.style.setProperty("display", enable ? "block" : "none");
+		element.style.setProperty("display", enable ? "grid" : "none");
 		
-		if(searchBar.value != "" && element.style.getPropertyValue("display") == "block")
+		if(searchBar.value != "" && element.style.getPropertyValue("display") == "grid")
 			searchMatch = entries[result.candidate];
 	}
 	
