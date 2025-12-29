@@ -152,11 +152,14 @@ openLogsBttn.onclick = () =>
 
 window.addEventListener("keydown", (e) =>
 {
-	if(previewOverlay.style.getPropertyValue("display") == "none")
+	if(e.key != "Escape")
 		return;
 	
-	if(e.key == "Escape")
+	if(previewOverlay.style.getPropertyValue("display") != "none")
 		Void_ClosePreview();
+
+	if(changelog.style.getPropertyValue("display") != "none")
+		Void_CloseChangelogs();
 });
 
 closePreviewBttn.onclick = () => Void_ClosePreview();
