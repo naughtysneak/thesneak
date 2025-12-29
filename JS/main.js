@@ -2,9 +2,29 @@
  * COPYRIGHT (c) 2025 - 2026 NaughtySneak. All rights reserved.
  */
 
-let artEntries = document.getElementsByClassName("entry");
+let artEntries = document.getElementsByClassName("entry art_entry");
 let artPieceBttn = document.getElementsByClassName("piece");
+
+let warning = document.getElementById("warning");
+let enterBttn = document.getElementById("enter");
+let exitBttn = document.getElementById("exit");
+
+let previewOverlay = document.getElementById("preview_overlay");
+let previewGraphic = document.getElementById("preview_graphic");
+let previewContent = document.getElementById("preview_content");
+let previewBackground = document.getElementById("preview_background");
+let preivewOverlayBounds = previewOverlay.getElementsByClassName("close_bounds")[0];
+let closePreviewBttn = previewOverlay.getElementsByClassName("close_button")[0];
+
+let pieceTitle = document.getElementById("piece_title");
+let pieceTime = document.getElementById("piece_time");
+let pieceDescription = document.getElementById("piece_description");
 let i = artEntries.length - 1;
+
+let changelog = document.getElementById("changelog");
+let logOverlayBounds = changelog.getElementsByClassName("close_bounds")[0];
+let closeLogsBttn = changelog.getElementsByClassName("close_button")[0];
+let openLogsBttn = document.getElementById("open_changelog");
 
 //#region OBSERVER
 let popIn = [
@@ -80,7 +100,7 @@ for (let m = 0; m < metadata.length; m++) {
 	while(addedPieces < element[1].setCount)
 	{
 		let child = element[1].linkedElement.children[1].children[a];
-		child.addEventListener("click", SetPreview(child, element[1]));
+		child.addEventListener("click", Void_SetPreview(child, element[1]));
 
 		element[1].pieces.push(child);
 
@@ -99,21 +119,49 @@ for (let m = 0; m < metadata.length; m++) {
 }
 //#endregion
 
-let warning = document.getElementById("warning");
-let enterBttn = document.getElementById("enter");
-let exitBttn = document.getElementById("exit");
-let closeBttn = document.getElementById("close");
+enterBttn.onclick = () =>
+{
+	warning.style.setProperty("display", "none");
+	document.body.style.setProperty("overflow", "visible");
+};
+exitBttn.onclick = () =>
+{
+	window.open("https://www.google.com/");
+};
+openLogsBttn.onclick = () =>
+{
+	changelog.style.setProperty("display", "grid");
+	changelog.animate(
+		[
+			{
+				opacity: 0,
+				scale: 0.95,
+			},
+			{
+				opacity: 1,
+				scale: 1,
+			}
+		],
+		{
+			fill: "forwards",
+			easing: "ease",
+			duration: 200,
+		}
+	);
+}
 
-let previewOverlay = document.getElementById("preview_overlay");
-let previewGraphic = document.getElementById("preview_graphic");
-let previewContent = document.getElementById("preview_content");
-let previewBackground = document.getElementById("preview_background");
+window.addEventListener("keydown", (e) =>
+{
+	if(previewOverlay.style.getPropertyValue("display") == "none")
+		return;
+	
+	if(e.key == "Escape")
+		Void_ClosePreview();
+});
 
-let pieceTitle = document.getElementById("piece_title");
-let pieceTime = document.getElementById("piece_time");
-let pieceDescription = document.getElementById("piece_description");
-
-function SetPreview(element, data)
+closePreviewBttn.onclick = () => Void_ClosePreview();
+preivewOverlayBounds.addEventListener("click", () => Void_ClosePreview());
+function Void_SetPreview(element, data)
 {
 	const style = getComputedStyle(element);
 	
@@ -123,7 +171,6 @@ function SetPreview(element, data)
 			return;
 		
 		previewOverlay.style.setProperty("display", "grid");
-		previewOverlay.animate(popIn);
 		
 		previewContent.style.setProperty("--gradKeyA", style.getPropertyValue("--gradKeyA"));
 		previewContent.style.setProperty("--gradKeyB", style.getPropertyValue("--gradKeyB"));
@@ -136,21 +183,74 @@ function SetPreview(element, data)
 
 		pieceDescription.innerHTML = data.description;
 		pieceDescription.style.setProperty("--headerColor", style.getPropertyPriority("--headerColor"));
+
+		previewOverlay.animate(
+			[
+				{
+					opacity: 0,
+					scale: 0.95,
+				},
+				{
+					opacity: 1,
+					scale: 1,
+				}
+			],
+			{
+				fill: "forwards",
+				easing: "ease",
+				duration: 200,
+			}
+		);
 	});
 }
-
-closeBttn.onclick = () =>
+function Void_ClosePreview()
 {
-	previewOverlay.style.setProperty("display", "none");
-};
+	previewOverlay.animate(
+		[
+			{
+				opacity: 1,
+				scale: 1,
+			},
+			{
+				opacity: 0,
+				scale: 0.95,
+			}
+		],
+		{
+			fill: "forwards",
+			easing: "ease",
+			duration: 200,
+		}
+	);
 
-enterBttn.onclick = () =>
-{
-	warning.style.setProperty("display", "none");
-	document.body.style.setProperty("overflow", "visible");
-};
+	setTimeout(() => {
+		previewOverlay.style.setProperty("display", "none");
+	}, 200);
+}
 
-exitBttn.onclick = () =>
+closeLogsBttn.onclick = () => Void_CloseChangelogs();
+logOverlayBounds.addEventListener("click", () => Void_CloseChangelogs())
+function Void_CloseChangelogs()
 {
-	window.open("https://www.google.com/");
-};
+	changelog.animate(
+		[
+			{
+				opacity: 1,
+				scale: 1,
+			},
+			{
+				opacity: 0,
+				scale: 0.95,
+			}
+		],
+		{
+			fill: "forwards",
+			easing: "ease",
+			duration: 200,
+		}
+	);
+
+	setTimeout(() => {
+		changelog.style.setProperty("display", "none");
+	}, 200);
+}

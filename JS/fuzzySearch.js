@@ -16,9 +16,21 @@ class Match
 let searchBar = document.getElementById("search");
 let searchMatch;
 
-function RunSearch()
+function Void_RunSearch()
 {
-	let result = FuzzySearch(searchBar.value.toString(), 14);
+	let result = Void_FuzzySearch(searchBar.value.toString(), 14);
+	let children;
+
+	if(searchMatch != null)
+	{
+		children = Array.from(searchMatch.linkedElement.children[1].children);
+		
+		for (let i = 0; i < children.length; i++) {
+			const element = children[i];
+			
+			element.style.setProperty("opacity", "");
+		}
+	}
 
 	for (let i = 0; i < artEntries.length; i++) {
 		const element = artEntries[i];
@@ -30,22 +42,13 @@ function RunSearch()
 			searchMatch = entries[result.candidate];
 	}
 	
-	let children;
-	
-	if(searchMatch != null)
-		children = Array.from(searchMatch.linkedElement.children[1].children);
-
 	if(searchBar.value == "")
-	{
-		for (let i = 0; i < children.length; i++) {
-			const element = children[i];
-			element.style.setProperty("opacity", "1");
-		}
-
 		return;
-	}
 	
 	let pieces = Array.from(searchMatch.pieces);
+
+	if(searchMatch != null)
+		children = Array.from(searchMatch.linkedElement.children[1].children);
 
 	for (let i = 0; i < children.length; i++) {
 		const element = children[i];
@@ -62,7 +65,7 @@ function RunSearch()
 	}
 }
 
-function FuzzySearch(searchedTerm, tolerance)
+function Void_FuzzySearch(searchedTerm, tolerance)
 {
 	let minimumCost = 999999;
 	let matchIndx = -1;
@@ -70,7 +73,7 @@ function FuzzySearch(searchedTerm, tolerance)
 	let matches = [];
 	
 	Object.entries(entries).forEach(element => {
-		let distance = LevenshteinDistance(element[0].toString().toLowerCase(), searchedTerm.toString().toLowerCase());
+		let distance = Int_LevenshteinDistance(element[0].toString().toLowerCase(), searchedTerm.toString().toLowerCase());
 
 		if(distance <= tolerance)
 		{
@@ -94,7 +97,7 @@ function FuzzySearch(searchedTerm, tolerance)
 	return matchIndx == -1 ? null : matches[matchIndx];
 }
 
-function LevenshteinDistance(keyword, searchTerm)
+function Int_LevenshteinDistance(keyword, searchTerm)
 {
 	let m = keyword.length;
 	let n = searchTerm.length;

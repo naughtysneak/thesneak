@@ -6,8 +6,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>The Sneak</title>
 
-		<link href="./CSS/main.css" rel="stylesheet" type="text/css">
-		<link href="./CSS/effects.css" rel="stylesheet" type="text/css">
+		<link href="./CSS/main.css?version=0.0.6" rel="stylesheet" type="text/css">
+		<link href="./CSS/effects.css?version=0.0.6" rel="stylesheet" type="text/css">
+		<link href="./CSS/interactives.css?version=0.0.6" rel="stylesheet" type="text/css">
 	</head>
 	<body>
 		<div id="warning" class="overlay">
@@ -33,14 +34,15 @@
 				</article>
 
 				<div class="link_group_row">
-					<button class="outlined text_mask" style="--buttonColor: #0f8615;" id="enter">I'm over 18 or older - Enter</button>
-					<button class="outlined text_mask" style="--buttonColor: #8d1414;" id="exit">I'm under 18 - Exit</button>
+					<button class="outlined" style="--buttonColor: #0f8615;" id="enter">I'm over 18 or older - Enter</button>
+					<button class="outlined" style="--buttonColor: #8d1414;" id="exit">I'm under 18 - Exit</button>
 				</div>
 			</div>
 		</div>
 		
 		<div id="preview_overlay" class="overlay">
-			<div id="preview_content" class="outlined">
+			<div class="close_bounds"></div>
+			<div id="preview_content" class="overlay_content outlined">
 				<div id="preview_background">
 					<div id="preview_graphic"></div>
 				</div>
@@ -54,10 +56,117 @@
 				</article>
 			</div>
 
-			<button class="outlined text_mask" style="--buttonColor: #8d1414;" id="close">X - Close</button>
+			<button class="close_button outlined">X - Close</button>
 		</div>
 
-		<h1 style="text-align: center;">Gallery Timeline <sup style="font-size: 11px;">v12-29 12:38 PM CST</sup></h1>
+		<div id="changelog" class="overlay">
+			<div class="close_bounds"></div>
+			<div class="overlay_content outlined">
+				<h1>Changlog</h1>
+				<div class="timeline_bounds">
+					<div class="timeline">
+						<h2 class="year_stamp">12-29</h2>
+						<div class="entry">
+							<h3><nobr>11:06 AM</nobr></h3>
+							<article>
+								<h2>Visibility &amp; Convenicence</h2>
+								
+								<ul style="list-style-type: '- '; padding-left: 16px;">
+									<li>
+										Improved piece visiblity in the gallery. They are now half transparent, and solidfy on hover/touch.
+									</li>
+									<li>
+										Improved timeline visbility. There is now a background around the content box, and a drop-shadow filter.
+									</li>
+									<li>
+										Improved convenience with overlays. You can now touch the outer bounds of an over to close it.
+									</li>
+									<li>
+										Improved visibility with the preview graphisc. A dark tinted and blurred version of the piece is now placed
+										behind the artwork.
+									</li>
+									<li>
+										Improved visibility of art piece titles. They are more solid. 
+									</li>
+									<li>
+										Fixed an issue where if the users searched for one piece, and then searched for another, the highlight
+										effect would not be undone from the previous search.
+									</li>
+								</ul>
+							</article>
+						</div>
+						<div class="entry">
+							<h3><nobr>12:37 AM</nobr></h3>
+							<article>
+								<h2>All 2023 Images</h2>
+								<p>
+									All works from 2023 are now uploaded.
+								</p>
+							</article>
+						</div>
+
+						<h2 class="year_stamp">12-28</h2>
+						<div class="entry">
+							<h3><nobr>11:27 PM</nobr></h3>
+							<article>
+								<h2>Display Fixes</h2>
+								<p>
+									Fixed an issue where the date points would not position correctly due
+									to an incorrect display command.
+								</p>
+							</article>
+						</div>
+						<div class="entry">
+							<h3><nobr>6:06 PM</nobr></h3>
+							<article>
+								<h2>Responsive Gallery</h2>
+								<p>
+									The timeline is now responsive to virtually all present dimension sizes and ratios.
+									<br><br>The gallery preview is also added and seems to be acting as expected.
+								</p>
+								<ul style="list-style-type: '- '; padding-left: 16px;">
+									<li>
+										Fixed an issue where gradient outlined objects were prevented from scrolling.
+									</li>
+									<li>
+										Fixed the search opacity effects not being reversed.
+									</li>
+									<li>
+										Fixed faded piece results not being transparent when the search highlight effect should only effect the relevant results.
+									</li>
+									<li>
+										Reduced image sizes for better loading times (No one needs 2k+ images, they're all reduced to a max of 800px width).
+									</li>
+								</ul>
+							</article>
+						</div>
+						<div class="entry">
+							<h3><nobr>2:13 AM</nobr></h3>
+							<article>
+								<h2>Image Root Directory Fix</h2>
+								<p>
+									Fixed an issue where the images were inaccessable due to a root error.
+								</p>
+							</article>
+						</div>
+						<div class="entry">
+							<h3><nobr>2:10 AM</nobr></h3>
+							<article>
+								<h2>Fuzzy Search</h2>
+								<p>
+									Fuzzy Search now isolates the image and the parts of its set.
+									<br><br>However, it does not undo the opacity changes. To be implemented next.
+								</p>
+							</article>
+						</div>
+
+						<h2 class="year_stamp">12-26: Site Started</h2>
+					</div>
+				</div>
+			</div>
+
+			<button class="close_button outlined">X - Close</button>
+		</div>
 		
 		<main>
 			<!-- SEARCH AREA: Needs...
@@ -66,157 +175,164 @@
 				- 	Date Filter [Use int]
 			-->
 			<div id="filters">
-				<input id="search" placeholder="Search by Name" autocomplete="off" type="search" onchange="javascript:RunSearch();"></input>
+			<h1 style="text-align: center;">Gallery Timeline</h1>
+				<button id="open_changelog" class="outlined">Change Logs</button>
+				<input id="search" placeholder="Search by Name" autocomplete="off" type="search" onchange="javascript:Void_RunSearch();"></input>
 			</div>
+			
+			<div class="timeline_bounds">
+				<div class="timeline">
+					<h2 class="year_stamp">2025</h2>
+					<div class="entry art_entry">
+						<h3>April</h3>
+						<div class="dateRow" style="--gradKeyA: #064cb4; --headerColor: #064cb4C0; --gradKeyB: #02154c;">
+							<div class="piece outlined" style="--gradKeyA: #090110; --headerColor: #090110C0; --gradKeyB: #acacac; --piece: url(./Media/2025/Overtime_Tips.webp);">
+								<p>(WIP) Overtime Tips - 0%</p>
+							</div>
+							<div class="piece outlined" style="--gradKeyA: #090110; --headerColor: #090110C0; --gradKeyB: #acacac; --piece: url(./Media/2025/Overtime_Tips_100.webp);">
+								<p>(WIP) Overtime Tips - 100%</p>
+							</div>
+							<div class="piece outlined" style="--piece: url(./Media/2025/Orion_SFW_Clothed.webp);">
+								<p>Orion v2025 SFW - Clothed</p>
+							</div>
+							<div class="piece outlined" style="--piece: url(./Media/2025/Orion_SFW_Bare.webp);">
+								<p>Orion v2025 SFW - Bare</p>
+							</div>
+							<div class="piece outlined" style="--piece: url(./Media/2025/Orion_NSFW_Flaccid.webp);">
+								<p>Orion v2025 NSFW - Flaccid</p>
+							</div>
+							<div class="piece outlined" style="--piece: url(./Media/2025/Orion_NSFW_Erect.webp);">
+								<p>Orion v2025 NSFW - Erect</p>
+							</div>
+						</div>
+					</div>
+					<div class="entry art_entry">
+						<h3>March</h3>
+						<div class="dateRow" style="--gradKeyA: #95e950; --headerColor: #95e950C0; --gradKeyB: #064cb4;">
+							<div class="piece outlined" style="--piece: url(./Media/2025/Down_Low_Gyo.webp);">
+								<p>Down Low Gyo</p>
+							</div>
+							<div class="piece outlined" style="--gradKeyA: #7ceafe; --headerColor: #7ceafeC0; --piece: url(./Media/2025/Hybrid_Dominating_Needy.webp);">
+								<p>Hybrid Dominating - Needy</p>
+							</div>
+							<div class="piece outlined" style="--gradKeyA: #7ceafe; --headerColor: #7ceafeC0; --piece: url(./Media/2025/Hybrid_Dominating_Cumdump.webp);">
+								<p>Hybrid Dominating - Cumdump</p>
+							</div>
+							<div class="piece outlined" style="--gradKeyA: #090110; --headerColor: #090110C0; --gradKeyB: #acacac; --piece: url(./Media/2025/Atlas_West.webp);">
+								<p>(WIP) Atlas West</p>
+							</div>
+						</div>
+					</div>
+					<div class="entry art_entry">
+						<h3>February</h3>
+						<div class="dateRow" style="--gradKeyA: #35b7ea; --headerColor: #35b7eaC0; --gradKeyB: #064cb4;">
+							<div class="piece outlined" style="--piece: url(./Media/2025/Lovers_Embrace_Embrace_Version.webp);">
+								<p>Lovers Embrace - Embrace Ver</p>
+							</div>
+							<div class="piece outlined" style="--piece: url(./Media/2025/Lovers_Embrace_Lovers_Version.webp);">
+								<p>Lovers Embrace - Lovers Ver</p>
+							</div>
+						</div>
+					</div>
+					<div class="entry art_entry">
+						<h3>January</h3>
+						<div class="dateRow" style="--gradKeyA: #35b7ea; --headerColor: #35b7eaC0; --gradKeyB: #064cb4;">
+							<div class="piece outlined" style="--piece: url(./Media/2025/A_Moment_In_Forever.webp);">
+								<p>A Moment In Forever</p>
+							</div>
+							<div class="piece outlined" style="--piece: url(./Media/2025/Its_Just_Us.webp);">
+								<p>It's Just Us</p>
+							</div>
+						</div>
+					</div>
 
-			<div id="timeline">
-				<h2 class="year_stamp">2025</h2>
-				<div class="entry">
-					<h3>April</h3>
-					<div class="dateRow" style="--gradKeyA: #064cb4; --headerColor: #064cb460; --gradKeyB: #02154c;">
-						<div class="piece outlined" style="--gradKeyA: #090110; --headerColor: #09011060; --gradKeyB: #acacac; --piece: url(./Media/2025/Overtime_Tips.webp);">
-							<p>(WIP) Overtime Tips - 0%</p>
-						</div>
-						<div class="piece outlined" style="--gradKeyA: #090110; --headerColor: #09011060; --gradKeyB: #acacac; --piece: url(./Media/2025/Overtime_Tips_100.webp);">
-							<p>(WIP) Overtime Tips - 100%</p>
-						</div>
-						<div class="piece outlined" style="--piece: url(./Media/2025/Orion_SFW_Clothed.webp);">
-							<p>Orion v2025 SFW - Clothed</p>
-						</div>
-						<div class="piece outlined" style="--piece: url(./Media/2025/Orion_SFW_Bare.webp);">
-							<p>Orion v2025 SFW - Bare</p>
-						</div>
-						<div class="piece outlined" style="--piece: url(./Media/2025/Orion_NSFW_Flaccid.webp);">
-							<p>Orion v2025 NSFW - Flaccid</p>
-						</div>
-						<div class="piece outlined" style="--piece: url(./Media/2025/Orion_NSFW_Erect.webp);">
-							<p>Orion v2025 NSFW - Erect</p>
+					<h2 class="year_stamp">2024</h2>
+					<div class="entry art_entry">
+						<h3>November</h3>
+						<div class="dateRow" style="--gradKeyA: #064cb4; --headerColor: #3fa348C0; --gradKeyB: #3fa348;">
+							<div class="piece outlined" style="--piece: url(./Media/2024/Tricky_Friendship.webp);">
+								<p>Tricky Friendship</p>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="entry">
-					<h3>March</h3>
-					<div class="dateRow" style="--gradKeyA: #95e950; --headerColor: #95e95060; --gradKeyB: #064cb4;">
-						<div class="piece outlined" style="--piece: url(./Media/2025/Down_Low_Gyo.webp);">
-							<p>Down Low Gyo</p>
-						</div>
-						<div class="piece outlined" style="--gradKeyA: #7ceafe; --headerColor: #7ceafe60; --piece: url(./Media/2025/Hybrid_Dominating_Needy.webp);">
-							<p>Hybrid Dominating - Needy</p>
-						</div>
-						<div class="piece outlined" style="--gradKeyA: #7ceafe; --headerColor: #7ceafe60; --piece: url(./Media/2025/Hybrid_Dominating_Cumdump.webp);">
-							<p>Hybrid Dominating - Cumdump</p>
-						</div>
-						<div class="piece outlined" style="--gradKeyA: #090110; --headerColor: #09011060; --gradKeyB: #acacac; --piece: url(./Media/2025/Atlas_West.webp);">
-							<p>(WIP) Atlas West</p>
+					<div class="entry art_entry">
+						<h3>April</h3>
+						<div class="dateRow" style="--gradKeyA: #8d1fa3; --headerColor: #8d1fa3C0; --gradKeyB: #1b0a49;">
+							<div class="piece outlined" style="--piece: url(./Media/2024/Cumdump_A.webp);">
+								<p>Cumdump Daddy - Pounding</p>
+							</div>
+							<div class="piece outlined" style="--piece: url(./Media/2024/Cumdump_B.webp);">
+								<p>Cumdump Daddy - Pumping</p>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="entry">
-					<h3>February</h3>
-					<div class="dateRow" style="--gradKeyA: #35b7ea; --headerColor: #35b7ea60; --gradKeyB: #064cb4;">
-						<div class="piece outlined" style="--piece: url(./Media/2025/Lovers_Embrace_Embrace_Version.webp);">
-							<p>Lovers Embrace - Embrace Ver</p>
-						</div>
-						<div class="piece outlined" style="--piece: url(./Media/2025/Lovers_Embrace_Lovers_Version.webp);">
-							<p>Lovers Embrace - Lovers Ver</p>
-						</div>
-					</div>
-				</div>
-				<div class="entry">
-					<h3>January</h3>
-					<div class="dateRow" style="--gradKeyA: #35b7ea; --headerColor: #35b7ea60; --gradKeyB: #064cb4;">
-						<div class="piece outlined" style="--piece: url(./Media/2025/A_Moment_In_Forever.webp);">
-							<p>A Moment In Forever</p>
-						</div>
-						<div class="piece outlined" style="--piece: url(./Media/2025/Its_Just_Us.webp);">
-							<p>It's Just Us</p>
+					
+					<h2 class="year_stamp">2023</h2>
+					<div class="entry art_entry">
+						<h3>November</h3>
+						<div class="dateRow" style="--gradKeyA: #064cb4; --headerColor: #064cb4C0; --gradKeyB: #acacac;">
+							<div class="piece outlined" style="--piece: url(./Media/2023/2023_Orion.webp);">
+								<p>Orion Ref - v2023</p>
+							</div>
 						</div>
 					</div>
-				</div>
+					<div class="entry art_entry">
+						<h3>September</h3>
+						<div class="dateRow" style="--gradKeyA: #ff9d2e; --headerColor: #ff9d2eC0; --gradKeyB: #acacac;">
+							<div class="piece outlined" style="--piece: url(./Media/2023/Laplace.webp);">
+								<p>Winking Laplace</p>
+							</div>
+						</div>
+					</div>
 
-				<h2 class="year_stamp">2024</h2>
-				<div class="entry">
-					<h3>November</h3>
-					<div class="dateRow" style="--gradKeyA: #064cb4; --headerColor: #3fa34860; --gradKeyB: #3fa348;">
-						<div class="piece outlined" style="--piece: url(./Media/2024/Tricky_Friendship.webp);">
-							<p>Tricky Friendship</p>
+					<h2 class="year_stamp">Became Naughty Sneak</h2>
+					<div class="entry art_entry">
+						<h3>July</h3>
+						<div class="dateRow" style="--gradKeyA: #34292c; --headerColor: #a34675C0; --gradKeyB: #a34675;">
+							<div class="piece outlined" style="--piece: url(./Media/2023/Atlas_Boxers.webp);">
+								<p>Atlas West - Boxers</p>
+							</div>
+							<div class="piece outlined" style="--piece: url(./Media/2023/Atlas_Jockstrap.webp);">
+								<p>Atlas West - Jockstrap</p>
+							</div>
+							<div class="piece outlined" style="--piece: url(./Media/2023/Atlas_Flaccid.webp);">
+								<p>Atlas West - Flaccid</p>
+							</div>
+							<div class="piece outlined" style="--piece: url(./Media/2023/Atlas_Hard.webp);">
+								<p>Atlas West - Hard</p>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="entry">
-					<h3>April</h3>
-					<div class="dateRow" style="--gradKeyA: #8d1fa3; --headerColor: #8d1fa360; --gradKeyB: #1b0a49;">
-						<div class="piece outlined" style="--piece: url(./Media/2024/Cumdump_A.webp);">
-							<p>Cumdump Daddy - Pounding</p>
-						</div>
-						<div class="piece outlined" style="--piece: url(./Media/2024/Cumdump_B.webp);">
-							<p>Cumdump Daddy - Pumping</p>
-						</div>
-					</div>
-				</div>
-				
-				<h2 class="year_stamp">2023</h2>
-				<div class="entry">
-					<h3>November</h3>
-					<div class="dateRow" style="--gradKeyA: #064cb4; --headerColor: #064cb460; --gradKeyB: #acacac;">
-						<div class="piece outlined" style="--piece: url(./Media/2023/2023_Orion.webp);">
-							<p>Orion Ref - v2023</p>
+					<div class="entry art_entry">
+						<h3>June</h3>
+						<div class="dateRow" style="--gradKeyA: #ec7a45; --headerColor: #ec7a45C0; --gradKeyB: #064cb4;">
+							<div class="piece outlined" style="--piece: url(./Media/2023/Naughty_Himbros.webp);">
+								<p>Naughty Himbros - Jerking Off</p>
+							</div>
+							<div class="piece outlined" style="--piece: url(./Media/2023/Naughty_Himbros_2.webp);">
+								<p>Naughty Himbros - Cum Alt</p>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="entry">
-					<h3>September</h3>
-					<div class="dateRow" style="--gradKeyA: #ff9d2e; --headerColor: #ff9d2e60; --gradKeyB: #acacac;">
-						<div class="piece outlined" style="--piece: url(./Media/2023/Laplace.webp);">
-							<p>Winking Laplace</p>
+					<div class="entry art_entry">
+						<h3>May</h3>
+						<div class="dateRow" style="--gradKeyA: #ff7676; --headerColor: #ff7676C0; --gradKeyB: #71009c;">
+							<div class="piece outlined" style="--piece: url(./Media/2023/Sexy_Dargo.webp);">
+								<p>Sexy Dargoo</p>
+							</div>
 						</div>
 					</div>
+					
+					<h2 class="year_stamp">Started as Underwater Talia</h2>
 				</div>
-
-				<h2 class="year_stamp">Became Naughty Sneak</h2>
-				<div class="entry">
-					<h3>July</h3>
-					<div class="dateRow" style="--gradKeyA: #34292c; --headerColor: #a3467560; --gradKeyB: #a34675;">
-						<div class="piece outlined" style="--piece: url(./Media/2023/Atlas_Boxers.webp);">
-							<p>Atlas West - Boxers</p>
-						</div>
-						<div class="piece outlined" style="--piece: url(./Media/2023/Atlas_Jockstrap.webp);">
-							<p>Atlas West - Jockstrap</p>
-						</div>
-						<div class="piece outlined" style="--piece: url(./Media/2023/Atlas_Flaccid.webp);">
-							<p>Atlas West - Flaccid</p>
-						</div>
-						<div class="piece outlined" style="--piece: url(./Media/2023/Atlas_Hard.webp);">
-							<p>Atlas West - Hard</p>
-						</div>
-					</div>
-				</div>
-				<div class="entry">
-					<h3>June</h3>
-					<div class="dateRow" style="--gradKeyA: #ec7a45; --headerColor: #ec7a4560; --gradKeyB: #064cb4;">
-						<div class="piece outlined" style="--piece: url(./Media/2023/Naughty_Himbros.webp);">
-							<p>Naughty Himbros - Jerking Off</p>
-						</div>
-						<div class="piece outlined" style="--piece: url(./Media/2023/Naughty_Himbros_2.webp);">
-							<p>Naughty Himbros - Cum Alt</p>
-						</div>
-					</div>
-				</div>
-				<div class="entry">
-					<h3>May</h3>
-					<div class="dateRow" style="--gradKeyA: #ff7676; --headerColor: #ff767660; --gradKeyB: #71009c;">
-						<div class="piece outlined" style="--piece: url(./Media/2023/Sexy_Dargo.webp);">
-							<p>Sexy Dargoo</p>
-						</div>
-					</div>
-				</div>
-				
-				<h2 class="year_stamp">Started as Underwater Talia</h2>
 			</div>
 		</main>
+
+		<footer>
+		</footer>
 	</body>
 	
-	<script src="./JS/library.js"></script>
-	<script src="./JS/fuzzySearch.js"></script>
-	<script src="./JS/main.js"></script>
+	<script src="./JS/library.js?version=0.0.6"></script>
+	<script src="./JS/fuzzySearch.js?version=0.0.6"></script>
+	<script src="./JS/main.js?version=0.0.6"></script>
 </html>

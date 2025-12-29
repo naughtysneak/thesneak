@@ -35,98 +35,11 @@ body {
 h1, h2, h3 {
 	font-family: "Rajdhani_Bold";
 }
-h4, h5, h6, button {
+h4, h5, h6, button, nobr {
 	font-family: "Rajdhani_SemiBold";
 }
 p, a {
 	font-family: "Rajdhani_Medium";
-}
-
-.overlay {
-	display			: grid;
-	justify-content	: center;
-	align-items		: center;
-
-	background-color: #000011d3;
-	backdrop-filter	: blur(40px);
-	
-	position		: fixed;
-	z-index			: 1;
-	inset			: 0px;
-}
-#warning_content {
-	background-color: #010127;
-	--gradKeyA		: #1c1c8d;
-	--gradKeyB		: #1b0345;
-
-	border-radius	: calc(var(--radius) - var(--offset));
-	width			: clamp(320px, 50vw, 640px);
-}
-#warning_content h1 {
-	background-color: #5c00004d;
-	border-radius	: inherit;
-	
-	margin			: 0px;
-	padding			: 8px 4px;
-
-	text-align		: center;
-	text-transform	: uppercase;
-}
-
-#preview_overlay {
-	display: none;
-}
-#preview_content {	
-	display				: grid;
-
-	grid-auto-columns	: 50vw;
-	grid-auto-rows		: min-content 40vh;
-}
-
-#preview_content.outlined {
-	height: min-content;
-}
-#preview_content::before {
-	--offset: 2px;
-}
-#preview_content.outlined:hover::before {
-	animation: none;
-}
-
-#preview_graphic {
-	display				: block;
-
-	background-image	: var(--piece);
-	background-size		: contain;
-	background-position	: center;
-	background-repeat	: no-repeat;
-	backdrop-filter		: blur(10px);
-
-	height: 100%;
-	width: 100%;
-	margin: auto;
-
-	border-radius: 4px;
-}
-#preview_background {
-	background-image	: var(--piece);
-	background-size		: cover;
-	background-position	: center;
-
-	height				: 50vh;
-
-	border-radius: 4px;
-}
-#piece_information {
-	background-color: #000011d3;
-	border-radius: 0px 0px var(--radius) var(--radius);
-	
-	scrollbar-color	: white transparent;
-
-	overflow-y		: auto;
-	padding			: 0px 16px;
-
-	z-index: 1;
 }
 
 .flex_center {
@@ -142,44 +55,8 @@ p, a {
 	padding	: 8px;
 }
 
-#filters {
-	display					: grid;
-	grid-template-columns	: 1fr;
-	gap						: 8px;
-
-	justify-content			: center;
-	align-items				: center;
-}
-
-#search {
-	position: relative;
-	background-color: #221558;
-	border: none;
-
-	border-radius: var(--radius);
-	padding: 8px;
-}
-#search::after {
-	position: absolute;
-	content: "";
-
-	background-image: url("../Media/Checker.webp");
-	background-size: contain;
-	inset: 0px;
-	z-index: 1;
-
-	width: 64px;
-	height: 64px;
-}
-input:focus {
-	accent-color: transparent;
-}
-input::placeholder {
-	color: white;
-}
-
 button {
-	background-color: transparent;
+	background-color: hsl(from var(--buttonColor) h s 10%);
 	--gradKeyA		: hsl(from var(--buttonColor) h s 61%);
 	--gradKeyB		: hsl(from var(--buttonColor) h s 7%);
 	color			: var(--buttonColor);
@@ -196,14 +73,6 @@ button {
 button:hover {
 	background-color: var(--buttonColor);
 	color			: white;
-}
-
-#close {
-	position: absolute;
-	width	: max-content;
-
-	top		: 16px;
-	right	: 16px;
 }
 
 @font-face {
