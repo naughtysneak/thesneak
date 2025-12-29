@@ -76,7 +76,7 @@ p, a {
 #preview_overlay {
 	display: none;
 }
-#preview_content {
+#preview_content {	
 	display				: grid;
 
 	grid-auto-columns	: 50vw;
@@ -94,15 +94,28 @@ p, a {
 }
 
 #preview_graphic {
-	display		: block;
+	display				: block;
 
-	width		: auto;
-	height		: auto;
+	background-image	: var(--piece);
+	background-size		: contain;
+	background-position	: center;
+	background-repeat	: no-repeat;
+	backdrop-filter		: blur(10px);
 
-	max-width	: 100%;
-	max-height	: 50vh;
-
+	height: 100%;
+	width: 100%;
 	margin: auto;
+
+	border-radius: 4px;
+}
+#preview_background {
+	background-image	: var(--piece);
+	background-size		: cover;
+	background-position	: center;
+
+	height				: 50vh;
+
+	border-radius: 4px;
 }
 #piece_information {
 	background-color: #000011d3;

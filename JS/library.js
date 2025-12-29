@@ -117,13 +117,20 @@ let entries = {
 											<br><br>However, I'm not done with you yet... 😈🤭
 											`,
 											20236, 9, CharacterTags.ORION | CharacterTags.WILL, TypeTags.PORTRAIT, CensorType.NSFW, 2),
+	"Atlas Ref v2023" 		: new ArtEntry	(null, "Atlas Ref v2023",
+											`Everyone has friends. If you're lucky, you get to have one stay since childhood.
+											<br><br>Orion is a lucky one thanks to Atlas, a super smart, nice, and sexy black bombay cat.
+											<br><br>They're both inseparble and the same age... and friends with benefits sometimes too...
+											hehehehe.
+											`,
+											20237, 3, CharacterTags.ATLAS, TypeTags.REF, CensorType.NSFW, 4),
 	"Winking Laplace" 		: new ArtEntry	(null, "Winking Laplace",
 											`After seeing Ramp's OC, Laplace, and realizing his origin, I HAD TO DRAW HIM!
 											<br><br>An OC named after a Math function! How could I not?! Plus, he's cute 🥰.
 											<br><br>So here is Laplace winking, in front of a graph plane, cuz yes :).
 											`,
 											20239, 3, CharacterTags.LAPLACE, TypeTags.PORTRAIT, CensorType.NSFW, 1),
-	"Orion Ref v2023" 		: new ArtEntry	(null, "Orion Ref",
+	"Orion Ref v2023" 		: new ArtEntry	(null, "Orion Ref v2023",
 											`The first iteration of an Orion in all his blue glory.
 											<br><br>His body art reflects his Euphorian heritage and power. It's designed to
 											look kind of like he's wearing a wet suit.

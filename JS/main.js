@@ -107,6 +107,7 @@ let closeBttn = document.getElementById("close");
 let previewOverlay = document.getElementById("preview_overlay");
 let previewGraphic = document.getElementById("preview_graphic");
 let previewContent = document.getElementById("preview_content");
+let previewBackground = document.getElementById("preview_background");
 
 let pieceTitle = document.getElementById("piece_title");
 let pieceTime = document.getElementById("piece_time");
@@ -127,12 +128,14 @@ function SetPreview(element, data)
 		previewContent.style.setProperty("--gradKeyA", style.getPropertyValue("--gradKeyA"));
 		previewContent.style.setProperty("--gradKeyB", style.getPropertyValue("--gradKeyB"));
 		
-		previewGraphic.src = element.style.getPropertyValue("--piece").replace("url(", "").replace(")", "");
-		pieceDescription.style.setProperty("--headerColor", style.getPropertyPriority("--headerColor"));
-
+		previewBackground.style.setProperty("--piece", style.getPropertyValue("--piece"));
+		previewGraphic.style.setProperty("--piece", style.getPropertyValue("--piece"));
+		
 		pieceTitle.innerText = data.name;
-		pieceTime.innerText = `Time Taken - ${data.hoursInt}`;
+		pieceTime.innerText = `Time Taken: ~${data.hoursInt} Hours`;
+
 		pieceDescription.innerHTML = data.description;
+		pieceDescription.style.setProperty("--headerColor", style.getPropertyPriority("--headerColor"));
 	});
 }
 
