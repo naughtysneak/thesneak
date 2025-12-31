@@ -499,6 +499,7 @@ class MultiToggle
 
 	#optionsMenu;
 	#options = [];
+	#optionsToggle = false;
 
 	constructor(obj, placeholder)
 	{
@@ -543,7 +544,7 @@ class MultiToggle
 		});
 		this.element.addEventListener("click", () =>
 		{
-			this.Void_OnClick(true);
+			this.Void_OnClick(!this.#optionsToggle);
 		});
 		this.element.addEventListener("mouseleave", () =>
 		{
@@ -558,6 +559,7 @@ class MultiToggle
 
 	Void_OnClick(state)
 	{
+		this.#optionsToggle = state;
 		this.#optionsMenu.style.setProperty("display", state ? "block" : "none");
 		this.element.style.setProperty("border-radius", state ? "var(--radius) var(--radius) 0px 0px" : "var(--radius)");
 	}
