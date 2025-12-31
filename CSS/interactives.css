@@ -335,7 +335,7 @@
 /** FILTERS **/
 #filters {
 	display					: grid;
-	grid-template-columns	: 1fr 256px;
+	grid-template-columns	: repeat(auto-fit, minmax(256px, 1fr));
 	gap						: 8px;
 
 	justify-content			: center;
