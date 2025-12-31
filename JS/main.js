@@ -2,7 +2,6 @@
  * COPYRIGHT (c) 2025 - 2026 NaughtySneak. All rights reserved.
  */
 
-let artEntries = document.getElementsByClassName("entry art_entry");
 let artPieceBttn = document.getElementsByClassName("piece");
 
 let warning = document.getElementById("warning");
@@ -72,7 +71,11 @@ let observer = new IntersectionObserver((entries) =>
 				}
 			);
 	});
-});
+},
+{
+	threshold: 0.1
+}
+);
 for (let i = 0; i < artEntries.length; i++) {
 	const element = artEntries[i];
 	observer.observe(element);
@@ -170,7 +173,8 @@ function Void_SetPreview(element, data)
 	
 	element.addEventListener("click", () =>
 	{
-		if(style.opacity != "1")
+		let opacity = (Number)(style.opacity);
+		if(opacity < 0.5)
 			return;
 		
 		previewOverlay.style.setProperty("display", "grid");
@@ -228,7 +232,7 @@ function Void_ClosePreview()
 
 	setTimeout(() => {
 		previewOverlay.style.setProperty("display", "none");
-	}, 200);
+	}, 150);
 }
 
 closeLogsBttn.onclick = () => Void_CloseChangelogs();
@@ -255,5 +259,5 @@ function Void_CloseChangelogs()
 
 	setTimeout(() => {
 		changelog.style.setProperty("display", "none");
-	}, 200);
+	}, 150);
 }

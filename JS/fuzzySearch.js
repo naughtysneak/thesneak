@@ -4,17 +4,77 @@
 
 class Match
 {
-	candidate;
 	cost;
+	indx;
 
 	constructor()
 	{
-		this.candidate = "";
+		this.cost = 0;
+		this.indx = -1;
 	}
 }
 
+let artEntries = document.getElementsByClassName("art_entry");
 let searchBar = document.getElementById("search");
 let searchMatch;
+
+let censorshipFlags	= CensorType.UNSET;		// No Set Filter if 0'd out
+let characterFlags	= CharacterTags.UNSET;	// No Set Filter if 0'd out
+let typeFlags		= TypeTags.UNSET;		// No Set Filter if 0'd out
+let yearNumber		= 0;					// No Set Filter if 0'd out
+let monthNumber		= new ClampedRange();	// No Set Filter if 0'd out
+let hourRange		= new ClampedRange(); 	// No Set Filter if 0'd out
+
+let focusedCustomUI = null;
+let censorUI = new MultiToggle(document.getElementById("censor_control"), "Explicit Level");
+censorUI.Void_OnValueChange = () => 
+{
+	NarrowCandidates();
+}
+
+let narrowedCandidates = Array.from(Object.entries(entries));
+
+function NarrowCandidates()
+{
+	let temp = [];
+	narrowedCandidates = Array.from(Object.entries(entries));
+	
+	censorshipFlags = censorUI.value;
+	
+	for (let i = 0; i < narrowedCandidates.length; i++) {
+		const element = narrowedCandidates[i][1];
+		
+		let censorship = censorshipFlags > 0 ? (element.censorship | censorshipFlags) === censorshipFlags : true;
+		let character = characterFlags > 0 ? (element.characterTags | characterFlags) === characterFlags : true;
+		let type = typeFlags > 0 ? (element.typeTags | typeFlags) === typeFlags : true;
+		let year = yearNumber > 0 ? element.year <= yearNumber : true;
+		let month = monthNumber.min > 0 ? element.month >= monthNumber.min && element.month <= monthNumber.max : true;
+		let hours = hourRange.min > 0 ? element.hoursInt >= hourRange.min && element.hoursInt <= hourRange.max : true;
+		let narrowed = censorship && character && type && year && month && hours;
+
+		element.Void_TogglePiece(narrowed)
+		
+		if(narrowed)
+			temp.push(narrowedCandidates[i]);
+	}
+
+	narrowedCandidates = Array.from(temp);
+	for (let a = 0; a < artEntries.length; a++) {
+		const element = artEntries[a];
+		
+		let childCount = element.children[1].children.length;
+		let disabledChildCount = 0;
+
+		for (let c = 0; c < childCount; c++) {
+			const child = element.children[1].children[c];
+			
+			if(child.style.getPropertyValue("display") == "none")
+				disabledChildCount++;
+		}
+		
+		element.style.setProperty("display", childCount == disabledChildCount ? "none" : "grid");
+	}
+}
 
 function Void_RunSearch()
 {
@@ -23,7 +83,7 @@ function Void_RunSearch()
 
 	if(searchMatch != null)
 	{
-		children = Array.from(searchMatch.linkedElement.children[1].children);
+		children = Array.from(searchMatch[1].linkedElement.children[1].children);
 		
 		for (let i = 0; i < children.length; i++) {
 			const element = children[i];
@@ -32,23 +92,22 @@ function Void_RunSearch()
 		}
 	}
 
-	for (let i = 0; i < artEntries.length; i++) {
-		const element = artEntries[i];
+	searchMatch = narrowedCandidates[result.indx];
+	
+	for (let i = 0; i < narrowedCandidates.length; i++) {
+		const element = narrowedCandidates[i][1].linkedElement;		
 		
-		let enable = searchBar.value == "" || searchBar.value != "" && element == entries[result.candidate].linkedElement;
+		let enable = searchBar.value == "" || searchBar.value != "" && element == narrowedCandidates[result.indx][1].linkedElement;
 		element.style.setProperty("display", enable ? "grid" : "none");
-		
-		if(searchBar.value != "" && element.style.getPropertyValue("display") == "grid")
-			searchMatch = entries[result.candidate];
 	}
 	
 	if(searchBar.value == "")
 		return;
 	
-	let pieces = Array.from(searchMatch.pieces);
-
 	if(searchMatch != null)
-		children = Array.from(searchMatch.linkedElement.children[1].children);
+		children = Array.from(searchMatch[1].linkedElement.children[1].children);
+	
+	let pieces = Array.from(searchMatch[1].pieces);
 
 	for (let i = 0; i < children.length; i++) {
 		const element = children[i];
@@ -57,6 +116,7 @@ function Void_RunSearch()
 		for (let c = 0; c < pieces.length; c++) {
 			const child = pieces[c];
 			matchFound = element == child;
+			
 			if(matchFound)
 				break;
 		}
@@ -68,33 +128,26 @@ function Void_RunSearch()
 function Void_FuzzySearch(searchedTerm, tolerance)
 {
 	let minimumCost = 999999;
-	let matchIndx = -1;
+	let match = null;
+	let i = 0;
 
-	let matches = [];
-	
-	Object.entries(entries).forEach(element => {
+	narrowedCandidates.forEach(element => {
 		let distance = Int_LevenshteinDistance(element[0].toString().toLowerCase(), searchedTerm.toString().toLowerCase());
-
-		if(distance <= tolerance)
+		
+		if(distance <= tolerance && distance < minimumCost)
 		{
 			let entry = new Match();
-			entry.candidate = element[0];
 			entry.cost = distance;
-			matches.push(entry);
+			entry.indx = i;
+			
+			match = entry;
+			minimumCost = distance;
 		}
+
+		i++;
 	});
 
-	for (let i = 0; i < matches.length; i++) {
-		const element = matches[i];
-		
-		if(element.cost < minimumCost)
-		{
-			minimumCost = element.cost;
-			matchIndx = i;
-		}
-	}
-
-	return matchIndx == -1 ? null : matches[matchIndx];
+	return match;
 }
 
 function Int_LevenshteinDistance(keyword, searchTerm)
