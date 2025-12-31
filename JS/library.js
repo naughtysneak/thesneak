@@ -541,7 +541,7 @@ class MultiToggle
 		{
 			this.Void_OnClick(true);
 		});
-		this.element.addEventListener("touchstart", () =>
+		this.element.addEventListener("click", () =>
 		{
 			this.Void_OnClick(true);
 		});
