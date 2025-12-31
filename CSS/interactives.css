@@ -401,7 +401,7 @@ input::placeholder {
 	inset: auto -1px;
 	translate: 0px 0px;
 }
-.toggle_list option {
+.toggle_option {
 	cursor			: pointer;
 	padding			: 4px 8px;
 }

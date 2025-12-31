@@ -504,7 +504,7 @@ class MultiToggle
 	{
 		this.element = obj;
 		this.#optionsMenu = this.element.getElementsByClassName("toggle_list")[0];
-		let optionElements = this.element.getElementsByTagName('option');
+		let optionElements = this.element.getElementsByClassName("toggle_option");
 		
 		this.#display = this.element.getElementsByTagName('p')[0];
 		this.#display.innerText = placeholder;
