@@ -18,16 +18,23 @@ let artEntries = document.getElementsByClassName("art_entry");
 let searchBar = document.getElementById("search");
 let searchMatch;
 
-let censorshipFlags	= CensorType.UNSET;		// No Set Filter if 0'd out
-let characterFlags	= CharacterTags.UNSET;	// No Set Filter if 0'd out
-let typeFlags		= TypeTags.UNSET;		// No Set Filter if 0'd out
-let yearNumber		= 0;					// No Set Filter if 0'd out
-let monthNumber		= new ClampedRange();	// No Set Filter if 0'd out
-let hourRange		= new ClampedRange(); 	// No Set Filter if 0'd out
+let censorshipFlags	= 0;
+let typeFlags		= 0;
+let yearNumber		= 0;
 
 let focusedCustomUI = null;
 let censorUI = new MultiToggle(document.getElementById("censor_control"), "Explicit Level");
 censorUI.Void_OnValueChange = () => 
+{
+	NarrowCandidates();
+}
+let typeUI = new MultiToggle(document.getElementById("type_control"), "Piece Type");
+typeUI.Void_OnValueChange = () => 
+{
+	NarrowCandidates();
+}
+let yearUI = new MultiToggle(document.getElementById("year_control"), "Year Published");
+yearUI.Void_OnValueChange = () =>
 {
 	NarrowCandidates();
 }
@@ -40,17 +47,16 @@ function NarrowCandidates()
 	narrowedCandidates = Array.from(Object.entries(entries));
 	
 	censorshipFlags = censorUI.value;
+	yearNumber = yearUI.value;
+	typeFlags = typeUI.value;
 	
 	for (let i = 0; i < narrowedCandidates.length; i++) {
 		const element = narrowedCandidates[i][1];
 		
 		let censorship = censorshipFlags > 0 ? (element.censorship | censorshipFlags) === censorshipFlags : true;
-		let character = characterFlags > 0 ? (element.characterTags | characterFlags) === characterFlags : true;
 		let type = typeFlags > 0 ? (element.typeTags | typeFlags) === typeFlags : true;
 		let year = yearNumber > 0 ? element.year <= yearNumber : true;
-		let month = monthNumber.min > 0 ? element.month >= monthNumber.min && element.month <= monthNumber.max : true;
-		let hours = hourRange.min > 0 ? element.hoursInt >= hourRange.min && element.hoursInt <= hourRange.max : true;
-		let narrowed = censorship && character && type && year && month && hours;
+		let narrowed = censorship && type && year;
 
 		element.Void_TogglePiece(narrowed)
 		
@@ -88,7 +94,7 @@ function Void_RunSearch()
 		for (let i = 0; i < children.length; i++) {
 			const element = children[i];
 			
-			element.style.setProperty("opacity", "");
+			element.style.setProperty("--visiblity", "");
 		}
 	}
 
@@ -121,7 +127,7 @@ function Void_RunSearch()
 				break;
 		}
 		
-		element.style.setProperty("opacity", matchFound ? "1" : "0.25");
+		element.style.setProperty("--visiblity", matchFound ? "1" : "0.25");
 	}
 }
 

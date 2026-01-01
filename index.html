@@ -4,11 +4,17 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>The Sneak</title>
 
-		<link href="./CSS/main.css?version=0.0.62" rel="stylesheet" type="text/css">
-		<link href="./CSS/effects.css?version=0.0.61" rel="stylesheet" type="text/css">
-		<link href="./CSS/interactives.css?version=0.0.64" rel="stylesheet" type="text/css">
+		<meta property="og:url" content="https://naughtysneak.github.io/thesneak">
+		<meta property="og:image" content="https://naughtysneak.github.io/thesneak/Media/Naughty_Orion.webp">
+		<meta property="og:title" content="The Sneak">
+		<meta property="og:description" content="The new home for all NaughtySneak artworks.">
+		
+		<title>The Sneak</title>
+		<link href="./CSS/effects.css?version=1.0.0" rel="stylesheet" type="text/css">
+		<link href="./CSS/interactives.css?version=1.0.0" rel="stylesheet" type="text/css">
+		<link href="./CSS/main.css?version=1.0.0" rel="stylesheet" type="text/css">
+		<link href="./CSS/page.css?version=1.0.0" rel="stylesheet" type="text/css">
 	</head>
 	<body>
 		<div id="warning" class="overlay">
@@ -65,7 +71,51 @@
 				<h1>Changelog</h1>
 				<div class="timeline_bounds">
 					<div class="timeline">
+						<h2 class="year_stamp">2026: The Sneak is launched.</h2>
+						<div class="entry">
+							<h3><nobr>12:00 PM</nobr></h3>
+							<article>
+								<h2>Openings &amp; Open Graph</h2>
+								<ul>
+									<li>
+										Added a welcome screen. Two versions appear depending on screen size. One for computers, one for mobile.
+									</li>
+									<li>
+										Added Open Graph to allow custom embed styling when the site URL is shared.
+									</li>
+									<li>
+										Improved the intersecting effect. Now, the art pieces are what pop in, instead of the months
+										they belong to.
+									</li>
+								</ul>
+							</article>
+						</div>
 						<h2 class="year_stamp">12-31</h2>
+						<div class="entry">
+							<h3><nobr>11:12 PM</nobr></h3>
+							<article>
+								<h2>Icons &amp; Ordering</h2>
+								<ul>
+									<li>
+										Added a welcome screen. It makes this place feel a little more whole.
+									</li>
+									<li>
+										Added icons for the search paramaters. It's now easier to understand what they do.
+									</li>
+									<li>
+										Added the footer. Copyrights, design, and development credits are all in place, and so
+										is the Change logs button.
+									</li>
+									<li>
+										Improved the layout order of filters. Search is at the top, and precision filters on the bottom.
+									</li>
+									<li>
+										Reduced the filter count from 7 to 4 to avoid overfilling paramters, and reduce data required to
+										add a new piece entry.
+									</li>
+								</ul>
+							</article>
+						</div>
 						<div class="entry">
 							<h3><nobr>4:05 PM</nobr></h3>
 							<article>
@@ -224,7 +274,7 @@
 							</article>
 						</div>
 
-						<h2 class="year_stamp">12-26: Site Started</h2>
+						<h2 class="year_stamp">12-26: Site development begins.</h2>
 					</div>
 				</div>
 			</div>
@@ -232,23 +282,67 @@
 			<button class="close_button outlined">X - Close</button>
 		</div>
 		
-		<main>
-			<h1 style="text-align: center;">Gallery Timeline</h1>
-			<button id="open_changelog" class="outlined">Change Logs</button>
-
-			<div id="filters">
-				<input id="search" placeholder="Search by Name" autocomplete="off" type="search" onchange="javascript:Void_RunSearch();"></input>
-				<div id="censor_control" class="multi_toggle">
-					<p></p>
-					<div class="toggle_list">
-						<div class="toggle_option" data-value="1">SFW</div>
-						<div class="toggle_option" data-value="2">Suggestive</div>
-						<div class="toggle_option" data-value="4">NSFW</div>
-					</div>
+		<div id="welcome">
+			<div id="banner"></div>
+			<div class="profile">
+				<img class="profile_img" src="./Media/Naughty_Orion.webp" alt="Naughty Orion">
+				<div class="welcome_text">
+					<p>Welcome to&hellip;</p>
+					<h1>Naughty Sneak</h1>
+					<h4>Once you sneak a peek, it just gets naughtier from there&hellip;</h4>
 				</div>
 			</div>
+
+			<div class="profile" style="grid-template-columns: max-content; place-items	: center;">
+				<div class="welcome_text" style="text-align: center; transform-origin: center;">
+					<p>Welcome to&hellip;</p>
+					<h1>Naughty Sneak</h1>
+					<h4>Once you sneak a peek, it just gets naughtier from there&hellip;</h4>
+				</div>
+				<img class="profile_img" src="./Media/Naughty_Orion.webp" alt="Naughty Orion" style="width: 256px;">
+			</div>
+		</div>
+		
+		<main>
+			<h1 id="gallery_title">Naughty Gallery</h1>
+			<div class="timeline_bounds" style="min-height: 80vh;">
+				<div id="filters">
+					<div style="position: relative;">
+						<input id="search" class="filter" placeholder="Search by Name" autocomplete="off" type="search" onchange="javascript:Void_RunSearch();"></input>
+						<img src="./Media/Icons/Search.webp" class="filter_icon">
+					</div>
+					<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(192px, 1fr)); gap: 4px;">
+						<div id="year_control" class="multi_toggle filter">
+							<img src="./Media/Icons/Calender.webp" class="filter_icon">
+							<p></p>
+							<div class="toggle_list">
+								<div class="toggle_option" data-value="1">2023</div>
+								<div class="toggle_option" data-value="2">2024</div>
+								<div class="toggle_option" data-value="4">2025</div>
+							</div>
+						</div>
+						<div id="type_control" class="multi_toggle filter">
+							<img src="./Media/Icons/Type.webp" class="filter_icon">
+							<p></p>
+							<div class="toggle_list">
+								<div class="toggle_option" data-value="1">Sticker</div>
+								<div class="toggle_option" data-value="2">Comic</div>
+								<div class="toggle_option" data-value="4">Portrait</div>
+								<div class="toggle_option" data-value="8">Sheet</div>
+							</div>
+						</div>
+						<div id="censor_control" class="multi_toggle filter">
+							<img src="./Media/Icons/Explicit.webp" class="filter_icon">
+							<p></p>
+							<div class="toggle_list">
+								<div class="toggle_option" data-value="1">SFW</div>
+								<div class="toggle_option" data-value="2">Suggestive</div>
+								<div class="toggle_option" data-value="4">NSFW</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			
-			<div class="timeline_bounds" style="min-height: 60vh;">
 				<div class="timeline">
 					<h2 class="year_stamp">2025</h2>
 					<div class="entry art_entry">
@@ -626,10 +720,15 @@
 		</main>
 
 		<footer>
+			<div id="footer_info">
+				<h3>COPYRIGHT &copy; 2025 - 2026 NaughtySneak. All rights reserved.</h3>
+				<h4>Designed and Developed by NaughtySneak.</h4>
+			</div>
+			<button id="open_changelog" class="outlined">Change Logs</button>
 		</footer>
 	</body>
 	
-	<script src="./JS/library.js?version=0.0.64"></script>
-	<script src="./JS/fuzzySearch.js?version=0.0.62"></script>
-	<script src="./JS/main.js?version=0.0.62"></script>
+	<script src="./JS/library.js?version=1.0.0"></script>
+	<script src="./JS/fuzzySearch.js?version=1.0.0"></script>
+	<script src="./JS/main.js?version=1.0.0"></script>
 </html>

@@ -2,11 +2,21 @@
  * COPYRIGHT (c) 2025 - 2026 NaughtySneak. All rights reserved.
  */
 
-let artPieceBttn = document.getElementsByClassName("piece");
+let artPieces = document.getElementsByClassName("piece");
 
 let warning = document.getElementById("warning");
 let enterBttn = document.getElementById("enter");
 let exitBttn = document.getElementById("exit");
+
+let welcomeScreenIndx = 0;
+
+if(window.visualViewport.width < 550)
+	welcomeScreenIndx = 1;
+
+let welcome = document.getElementById("welcome");
+let profile = document.getElementsByClassName("profile")[welcomeScreenIndx];
+let sneakImg = document.getElementsByClassName("profile_img")[welcomeScreenIndx];
+let welcomeText = document.getElementsByClassName("welcome_text")[welcomeScreenIndx];
 
 let previewOverlay = document.getElementById("preview_overlay");
 let previewGraphic = document.getElementById("preview_graphic");
@@ -32,14 +42,14 @@ let popIn = [
 		scale: 0.8,
 	},
 	{
-		opacity: 1,
-		scale: 1,
+		opacity: "var(--visiblity)",
+		scale: "var(--size)",
 	}
 ];
 let popOut = [
 	{
-		opacity: 1,
-		scale: 1,
+		opacity: "var(--visiblity)",
+		scale: "var(--size)",
 	},
 	{
 		opacity: 0,
@@ -72,12 +82,9 @@ let observer = new IntersectionObserver((entries) =>
 			);
 	});
 },
-{
-	threshold: 0.1
-}
-);
-for (let i = 0; i < artEntries.length; i++) {
-	const element = artEntries[i];
+{ threshold: 0.1 });
+for (let i = 0; i < artPieces.length; i++) {
+	const element = artPieces[i];
 	observer.observe(element);
 }
 //#endregion
@@ -124,8 +131,98 @@ for (let m = 0; m < metadata.length; m++) {
 
 enterBttn.onclick = () =>
 {
-	warning.style.setProperty("display", "none");
-	document.body.style.setProperty("overflow", "visible");
+	warning.animate(
+	[
+		{
+			opacity: 1,
+			scale: 1,
+		},
+		{
+			opacity: 0,
+			scale: 0.95,
+		}
+	],
+	{
+		fill: "forwards",
+		easing: "ease",
+		duration: 200,
+	}
+	);
+	setTimeout(() => {
+		warning.style.setProperty("display", "none");
+	}, 150);
+	
+	profile.style.setProperty("display", "grid");
+
+	profile.animate(
+		[
+			{
+				opacity: 0,
+			},
+			{
+				opacity: 1,
+			}
+		],
+		{
+			delay: 450,
+			fill: "forwards",
+			easing: "linear",
+			duration: 600
+		}
+	);
+	sneakImg.animate(
+		[
+			{
+				scale: 0.5
+			},
+			{
+				scale: 1
+			}
+		],
+		{
+			delay: 450,
+			fill: "forwards",
+			easing: "cubic-bezier(0.34, 2, 0.64, 1)",
+			duration: 600
+		}
+	); 
+	welcomeText.animate(
+		[
+			{
+				width: "0%",
+			},
+			{
+				width: `100%`,
+			}
+		],
+		{
+			delay: 950,
+			fill: "forwards",
+			easing: "cubic-bezier(.3,.06,.4,.98)",
+			duration: 600
+		}
+	);
+	welcome.animate(
+		[
+			{
+				opacity: 1,
+			},
+			{
+				opacity: 0,
+			}
+		],
+		{
+			delay: 3000,
+			fill: "forwards",
+			easing: "linear",
+			duration: 500
+		}
+	)
+
+	setTimeout(() => {
+		document.body.style.setProperty("overflow", "visible");
+		welcome.style.setProperty("display", "none");
+	}, 3500);
 };
 exitBttn.onclick = () =>
 {

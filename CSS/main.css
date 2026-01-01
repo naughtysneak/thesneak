@@ -1,7 +1,7 @@
 @property --offset {
 	syntax			: "<length>";
 	initial-value	: 1px;
-	inherits		: false;
+	inherits		: true;
 }
 
 :root {
@@ -31,6 +31,12 @@ body {
 
 	min-height	: 100vh;
 	scrollbar-color: white transparent;
+
+	margin		: 0px;
+	padding		: 0px;
+}
+main {
+	margin: 8px;
 }
 h1, h2, h3 {
 	font-family: "Rajdhani_Bold";
@@ -40,12 +46,6 @@ h4, h5, h6, button, nobr {
 }
 p, a {
 	font-family: "Rajdhani_Medium";
-}
-
-.flex_center {
-	display			: flex;
-	justify-content	: center;
-	align-items		: center;
 }
 
 .link_group_row {
@@ -77,7 +77,8 @@ button:hover {
 }
 
 input {
-	color: white;
+	color		: white;
+	font-size	: 0.85rem;
 }
 
 @font-face {
