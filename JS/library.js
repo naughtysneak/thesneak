@@ -465,6 +465,12 @@ let entries = {
 											<br><br>3 NSFW, 1 SFW, & Bonus Sticker for <a href="https://x.com/SodaFur20" target="_blank">SodaFur20</a>.
 											`,
 											Year[2025], 10, TypeTags.STICKER, CensorType.NSFW, 5),
+	"Victory Sterling" 		: new ArtEntry	(null, "Victory Sterling WIP",
+											`<a href="https://x.com/Sonaphor" target="_blank">Sterling</a> cashed in an offer I gave him for his birthday.
+											<br><br>It&apos;s of his moth finally getting his Raspberry PI to work, based on a real event.
+											<br><br>He&apos;s a very gay nerd&hellip; bend him over :>.
+											`,
+											Year[2025], 4, TypeTags.PORTRAIT, CensorType.SUGGESTIVE, 1),
 	"Johnny Sticker" 		: new ArtEntry	(null, "Johnny Headpats",
 											`I made a headpat sticker for my friend <a href="https://x.com/yifforroarts" target="_blank">yifforroarts</a> when
 											he was going through a hard time.
