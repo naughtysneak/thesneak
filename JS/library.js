@@ -421,7 +421,7 @@ let entries = {
 											<br><br>3 SFW stickers for <a href="https://x.com/thechainchompy" target="_blank">thechainchompy</a>.
 											`,
 											Year[2025], 6, TypeTags.STICKER, CensorType.NSFW, 3),
-	"Kannen Trey Stickers" 	: new ArtEntry	(null, "Commission ID #006 - Tech Otter",
+	"Kannen Trey Stickers" 	: new ArtEntry	(null, "Commission ID #006 - Kannen Trey",
 											`Kannen definitely got a little more than he bargained for with Trey&hellip; I think the big fox is a little surprised too :>.
 											<br><br>Just don't break the couch! Green ones are hard to find&hellip;
 											<br><br>NSFW sticker for <a href="https://x.com/AAlkhemet" target="_blank">AAlkhemet</a>
