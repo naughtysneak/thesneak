@@ -55,7 +55,7 @@ function NarrowCandidates()
 		
 		let censorship = censorshipFlags > 0 ? (element.censorship | censorshipFlags) === censorshipFlags : true;
 		let type = typeFlags > 0 ? (element.typeTags | typeFlags) === typeFlags : true;
-		let year = yearNumber > 0 ? element.year <= yearNumber : true;
+		let year = yearNumber > 0 ? (element.year | yearNumber) === yearNumber : true;
 		let narrowed = censorship && type && year;
 
 		element.Void_TogglePiece(narrowed)
