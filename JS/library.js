@@ -178,7 +178,7 @@ let entries = {
 											<br><br>They're both inseparble and the same age&hellip; and friends with benefits sometimes too&hellip;
 											hehehehe.
 											`,
-											Year[2023], 3, TypeTags.REF, CensorType.NSFW, 4),
+											Year[2023], 3, TypeTags.SHEET, CensorType.NSFW, 4),
 	"Winking Laplace" 		: new ArtEntry	(null, "Winking Laplace",
 											`After seeing Ramp's OC, Laplace, and realizing his origin, I HAD TO DRAW HIM!
 											<br><br>An OC named after a Math function! How could I not?! Plus, he's cute 🥰.
