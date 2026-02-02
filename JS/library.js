@@ -494,8 +494,7 @@ let entries = {
 											`,
 											Year[2025], 4, TypeTags.SHEET, CensorType.SFW, 1),
 	"Yves Stickers" 	: new ArtEntry	(null, "Commission ID #013 - Yves",
-											`
-											Cats show their affection by using their body language. In the case of Yves, he's one "kitty" whose body language says A LOT!!!
+											`Cats show their affection by using their body language. In the case of Yves, he's one "kitty" whose body language says A LOT!!!
 											<br><br>Especially... "Whore". Hehehehehe.
 											<br><br>My bf <a href="https://x.com/slurpjunkk" target="_blank">Slurpjunkk</a> is a special guest star in the gangbang~
 											<br><br>3 NSFW stickers &amp; for <a href="https://x.com/lynx_yvesAD" target="_blank">lynx_yvesAD</a>.
