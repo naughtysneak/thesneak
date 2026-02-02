@@ -41,6 +41,7 @@ const Year = {
 	2023: 1,
 	2024: 2,
 	2025: 4,
+	2026: 8,
 }
 
 class ClampedRange
@@ -492,6 +493,14 @@ let entries = {
 											<br><br>Now, as for how this happened&hellip; idk it's comic logic, stop asking and hold the precious bb already!
 											`,
 											Year[2025], 4, TypeTags.SHEET, CensorType.SFW, 1),
+	"Yves Stickers" 	: new ArtEntry	(null, "Commission ID #013 - Yves",
+											`
+											Cats show their affection by using their body language. In the case of Yves, he's one "kitty" whose body language says A LOT!!!
+											<br><br>Especially... "Whore". Hehehehehe.
+											<br><br>My bf <a href="https://x.com/slurpjunkk" target="_blank">Slurpjunkk</a> is a special guest star in the gangbang~
+											<br><br>3 NSFW stickers &amp; for <a href="https://x.com/lynx_yvesAD" target="_blank">lynx_yvesAD</a>.
+											`,
+											Year[2026], 7, TypeTags.STICKER, CensorType.NSFW, 6),
 }
 
 class MultiToggle
