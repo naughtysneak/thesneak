@@ -351,7 +351,7 @@ let entries = {
 											<br><br>Even as Father Time and Death&hellip; we still like to be free willie~
 											<br><br>I LOVE YOU BB! 💙💙
 											`,
-											Year[2025], 10, TypeTags.STICKER, CensorType.SFW, 2),
+											Year[2025], 10, TypeTags.PORTRAIT, CensorType.SFW, 2),
 	"Destiny Naturale" 		: new ArtEntry	(null, "Destiny Natural Ver.",
 											`Happy 4 month anniversary <a href="https://x.com/slurpjunkk" target="_blank">Slurpjunkk</a>!
 											<br><br>4 amazing months with the sexiest ghost ever&hellip;
