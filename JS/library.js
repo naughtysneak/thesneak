@@ -359,7 +359,7 @@ let entries = {
 											<br><br>Even as Father Time and Death&hellip; we still like to be free willie~
 											<br><br>I LOVE YOU BB! 💙💙
 											`,
-											Year[2025], 10, TypeTags.STICKER, CensorType.NSFW, 2),
+											Year[2025], 10, TypeTags.PORTRAIT, CensorType.NSFW, 2),
 	"Comfort hug" 			: new ArtEntry	(null, "Comfort hug",
 											`My friend <a href="https://x.com/ToonsAfterD" target="_blank">ToonsAfterD</a> went through a tough time.
 											<br><br>To try and cheer him up, I made a sticker of Orion holding Roy.
